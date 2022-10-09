@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +22,7 @@ namespace cs2snes {
 
         private ClientWebSocket socket = new();
         private bool socketErrored = false;
-        private ArraySegment<byte> byteBuffer = new(new byte[0x1000]);
+        private readonly ArraySegment<byte> byteBuffer = new(new byte[0x1000]);
         private bool isSd2Snes = false;
         private string device;
         private TimeSpan timeout = TimeSpan.FromSeconds(1);
