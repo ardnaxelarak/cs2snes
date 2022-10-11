@@ -266,7 +266,7 @@ namespace cs2snes {
                 Console.WriteLine(string.Join(" ", data.Select(b => b.ToString("X2"))));
                 CancellationTokenSource source = new(timeout);
                 await socket.SendAsync(
-                    data.ToArray(),
+                    new(data.ToArray()),
                     WebSocketMessageType.Binary,
                     true,
                     source.Token);
@@ -296,7 +296,7 @@ namespace cs2snes {
             try {
                 CancellationTokenSource source = new(timeout);
                 WebSocketReceiveResult result = await socket.ReceiveAsync(byteBuffer, source.Token);
-                List<byte> response = byteBuffer.Slice(0, result.Count).ToList();
+                List<byte> response = byteBuffer.Take(result.Count).ToList();
                 return response;
             } catch (WebSocketException ex) {
                 socketErrored = true;
