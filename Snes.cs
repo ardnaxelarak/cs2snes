@@ -258,6 +258,8 @@ namespace cs2snes {
                 throw new SnesException("Sending data failed.", ex);
             } catch (ObjectDisposedException ex) {
                 throw new SnesException("Sending data failed.", ex);
+            } catch (TaskCanceledException ex) {
+                throw new SnesException("Sending data failed.", ex);
             }
         }
 
